@@ -1,10 +1,56 @@
 #include "includes/pet.h"
 #include "includes/utils.h"
 #include <charconv>
+#include <fstream>
 #include <iostream>
+#include <iomanip>
+#include <limits>
 #include <string>
 #include <string_view>
 
+/*
+**  This function manages loading the pet from the save file. Returns either
+**  empty pet if something goes wrong with loading, or the requested pet
+*/
+Pet load_pet()
+{
+    std::string file_path = select_save();
+    Pet pet {};
+    if (file_path == "-false")
+    {
+        std::cout << "Couldn't load file\n";
+        return pet;
+    }
+
+    std::ifstream file {file_path};
+    if (!file.is_open())
+    {
+        std::cout << "Couldn't open save file\n";
+        return pet;
+    }
+
+    std::string line {};
+    std::getline(file, line);
+    std::istringstream iss(line);
+    std::string happiness {};
+    std::string fullness {};
+    std::string energy {};
+    std::getline(iss, pet.name, ',');
+    std::getline(iss, pet.type, ',');
+    std::getline(iss, happiness, ',');
+    std::getline(iss, fullness, ',');
+    std::getline(iss, energy);
+    pet.happiness = std::stoi(happiness);
+    pet.fullness = std::stoi(fullness);
+    pet.energy = std::stoi(energy);
+    
+    file.close();
+    return pet;
+}
+
+/*
+**  This function controls the creation of save file to save pet and it's stats
+*/
 void save_game(Pet& pet)
 {
     while (true)
@@ -18,7 +64,7 @@ void save_game(Pet& pet)
         }
         else if (file_exists(file_name))
         {
-            std::cout << "Save with this name already exists.\n";
+            std::cout << "Save file with this name already exists.\n";
             continue;
         }
         if (create_save_file(pet, file_name) == 0)
@@ -34,7 +80,8 @@ void print_main_menu()
 {
     std::cout << "Kamogotchi\n\n";
     std::cout << "1) Start With New Pet\n";
-    std::cout << "2) Quit Game\n";
+    std::cout << "2) Load Pet\n";
+    std::cout << "3) Quit Game\n";
 }
 
 void print_game_options(std::string name)
@@ -84,12 +131,12 @@ int game_loop(Pet& pet)
     }
 }
 
-int main_menu(Pet pet)
+int main_menu()
 {
     while (true)
     {
         print_main_menu();
-        int option = validate_input(get_input(), 1, 2);
+        int option = validate_input(get_input(), 1, 3);
         if (option == 1)
         {
             std::string name = get_input("Enter the name for the pet: ");
@@ -99,6 +146,14 @@ int main_menu(Pet pet)
                 return 0;
         }
         else if (option == 2)
+        {
+            Pet pet = load_pet();
+            if (pet.name == "")
+                return 1;
+            if (game_loop(pet) == 0)
+                return 0;
+        }
+        else if (option == 3)
             return 0;
     }
 }
@@ -108,7 +163,7 @@ int main(int argc, char* argv[])
     Pet active_pet {};
     while (true)
     {
-        if (main_menu(active_pet) == 0)
+        if (main_menu() == 0)
             return 0;
     }
 }

@@ -13,8 +13,8 @@ inline constexpr std::pair<int,int>    ENERGY {0, 100};
 
 struct Pet
 {
-    std::string name {};
-    std::string type {};
+    std::string name {""};
+    std::string type {""};
     int         happiness {0};  //Every pet starts with happiness of 0
     int         fullness {30};  //Every pet starts with fullness of 30
     int         energy {50};    //Every pet starts with energy of 50
