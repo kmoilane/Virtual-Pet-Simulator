@@ -2,11 +2,41 @@
 #include <iostream>
 #include <string>
 
+void change_energy(Pet& pet, int amount)
+{
+    pet.energy += amount;
+    if (pet.energy > ENERGY.second)
+        pet.energy == ENERGY.second;
+    else if (pet.energy < ENERGY.first)
+        pet.energy == ENERGY.first;
+}
+
+void increase_happiness(Pet& pet, int amount)
+{
+    pet.happiness += amount;
+    if (pet.happiness > HAPPINESS.second)
+        pet.happiness = HAPPINESS.second;
+}
+
+void play_with_pet(Pet& pet)
+{
+    if (pet.energy - 10 < 0)
+        std::cout << pet.name << " is too tired to play right now.\n";
+    else
+    {
+        increase_happiness(pet, 5);
+        change_energy(pet, -10);
+        std::cout << "You play with " << pet.name
+            << "\nIt's happiness is now: " << pet.happiness << '\n';
+        std::cout << pet.name << "'s energy is now: " << pet.energy << '\n';
+    }
+}
+
 void feed_pet(Pet& pet)
 {
     if (pet.fullness == FULLNESS.second)
         std::cout << pet.name << " is not hungry right now.\n";
-    else if (pet.fullness < FULLNESS.second)
+    else
     {
         if (pet.fullness + 10 >= FULLNESS.second)
             pet.fullness = 100;
@@ -14,9 +44,7 @@ void feed_pet(Pet& pet)
             pet.fullness += 10;
         std::cout << pet.name << " is now fed and it's fullness is: "
             << pet.fullness << '\n';
-        pet.happiness += 2;
-        if (pet.happiness > 10)
-            pet.happiness = 10;
+        increase_happiness(pet, 2);
         std::cout << pet.name << "'s happiness is now: " << pet.happiness << '\n';
     }
 }
