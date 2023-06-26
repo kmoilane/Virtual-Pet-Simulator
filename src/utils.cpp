@@ -6,6 +6,14 @@
 #include <fstream>
 #include <filesystem>
 
+bool string_is_empty(std::string& str)
+{
+    if (str.empty() || str == "")
+        return true;
+
+    return false;
+}
+
 /*
 **  Get's user input string. First prints message if it's provided, default is ""
 */
