@@ -17,8 +17,9 @@ void print_game_options(std::string name)
     std::cout << "What do you want to do?\n\n";
     std::cout << "1) Feed " << name << '\n';
     std::cout << "2) Play with " << name << '\n';
-    std::cout << "3) Back to main menu\n";
-    std::cout << "4) Quit Game\n";
+    std::cout << "3) Put " << name << " to sleep\n";
+    std::cout << "4) Back to main menu\n";
+    std::cout << "5) Quit Game\n";
 }
 
 int game_loop(Pet& pet)
@@ -26,7 +27,7 @@ int game_loop(Pet& pet)
     while (true)
     {
         print_game_options(pet.name);
-        int option = validate_input(get_input(), 1, 3);
+        int option = validate_input(get_input(), 1, 5);
         if (option == 1)
         {
             feed_pet(pet);
@@ -37,9 +38,13 @@ int game_loop(Pet& pet)
         }
         else if (option == 3)
         {
-            return 1;
+            put_to_sleep(pet);
         }
         else if (option == 4)
+        {
+            return 1;
+        }
+        else if (option == 5)
             return 0;
     }
 }
