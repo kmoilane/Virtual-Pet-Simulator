@@ -1,4 +1,5 @@
 #include "../includes/pet.h"
+#include "../includes/utils.h"
 #include <iostream>
 #include <string>
 

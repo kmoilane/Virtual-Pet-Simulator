@@ -5,6 +5,31 @@
 #include <string>
 #include <string_view>
 
+void save_game(Pet& pet)
+{
+    while (true)
+    {
+        std::cout << "\nEnter the name for the save:\n";
+        std::string file_name = get_input();
+        if (!validate_file_name(file_name))
+        {
+            std::cout << "Name can only include letters and numbers!\n";
+            continue;
+        }
+        else if (file_exists(file_name))
+        {
+            std::cout << "Save with this name already exists.\n";
+            continue;
+        }
+        if (create_save_file(pet, file_name) == 0)
+        {
+            std::cout << "Game saved succesfully!\n\n";
+            return ;
+        }
+        std::cout << "Something went wrong saving the file!\n";
+    }
+}
+
 void print_main_menu()
 {
     std::cout << "Kamogotchi\n\n";
@@ -19,8 +44,9 @@ void print_game_options(std::string name)
     std::cout << "2) Play with " << name << '\n';
     std::cout << "3) Put " << name << " to sleep\n";
     std::cout << "4) Display " << name << "'s stats\n";
-    std::cout << "5) Back to main menu\n";
-    std::cout << "6) Quit Game\n";
+    std::cout << "5) Save Game\n";
+    std::cout << "6) Main Menu\n";
+    std::cout << "7) Quit Game\n";
 }
 
 int game_loop(Pet& pet)
@@ -28,7 +54,7 @@ int game_loop(Pet& pet)
     while (true)
     {
         print_game_options(pet.name);
-        int option = validate_input(get_input(), 1, 6);
+        int option = validate_input(get_input(), 1, 7);
         if (option == 1)
         {
             feed_pet(pet);
@@ -47,9 +73,13 @@ int game_loop(Pet& pet)
         }
         else if (option == 5)
         {
-            return 1;
+            save_game(pet);
         }
         else if (option == 6)
+        {
+            return 1;
+        }
+        else if (option == 7)
             return 0;
     }
 }
