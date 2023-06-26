@@ -16,8 +16,9 @@ void print_game_options(std::string name)
 {
     std::cout << "What do you want to do?\n\n";
     std::cout << "1) Feed " << name << '\n';
-    std::cout << "2) Back to main menu\n";
-    std::cout << "3) Quit Game\n";
+    std::cout << "2) Play with " << name << '\n';
+    std::cout << "3) Back to main menu\n";
+    std::cout << "4) Quit Game\n";
 }
 
 int game_loop(Pet& pet)
@@ -32,9 +33,13 @@ int game_loop(Pet& pet)
         }
         else if (option == 2)
         {
-            return 1;
+            play_with_pet(pet);
         }
         else if (option == 3)
+        {
+            return 1;
+        }
+        else if (option == 4)
             return 0;
     }
 }
