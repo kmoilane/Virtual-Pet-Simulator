@@ -1,7 +1,6 @@
 #ifndef PET_H
 #define PET_H
 
-#define SAVE_PATH "saves/"
 #include <string>
 #include <iostream>
 

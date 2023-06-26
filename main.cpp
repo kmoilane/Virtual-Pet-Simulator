@@ -141,6 +141,11 @@ int main_menu()
         {
             std::string name = get_input("Enter the name for the pet: ");
             std::string type = get_input("Enter the type for the pet: ");
+            if (string_is_empty(name) || string_is_empty(type))
+            {
+                std::cout << "Name and type need to have at least one character!\n";
+                continue ;
+            }
             Pet new_pet { create_new_pet(name, type) };
             if (game_loop(new_pet) == 0)
                 return 0;
