@@ -21,5 +21,6 @@ Pet create_new_pet(std::string name, std::string type);
 void feed_pet(Pet& pet);
 void play_with_pet(Pet& pet);
 void put_to_sleep(Pet& pet);
+void display_stats(Pet& pet);
 
 #endif

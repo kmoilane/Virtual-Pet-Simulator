@@ -18,6 +18,15 @@ void increase_happiness(Pet& pet, int amount)
         pet.happiness = HAPPINESS.second;
 }
 
+void display_stats(Pet& pet)
+{
+    std::cout << '\n' << pet.name << "'s stats:\n\n";
+    std::cout << "Happiness: " << pet.happiness << '/' << HAPPINESS.second
+        << '\n';
+    std::cout << "Fullness: " << pet.fullness << '/' << FULLNESS.second << '\n';
+    std::cout << "Energy: " << pet.energy << '/' << ENERGY.second << '\n';
+}
+
 void put_to_sleep(Pet& pet)
 {
     if (pet.energy == ENERGY.second)
