@@ -6,9 +6,9 @@ void change_energy(Pet& pet, int amount)
 {
     pet.energy += amount;
     if (pet.energy > ENERGY.second)
-        pet.energy == ENERGY.second;
+        pet.energy = ENERGY.second;
     else if (pet.energy < ENERGY.first)
-        pet.energy == ENERGY.first;
+        pet.energy = ENERGY.first;
 }
 
 void increase_happiness(Pet& pet, int amount)
@@ -16,6 +16,18 @@ void increase_happiness(Pet& pet, int amount)
     pet.happiness += amount;
     if (pet.happiness > HAPPINESS.second)
         pet.happiness = HAPPINESS.second;
+}
+
+void put_to_sleep(Pet& pet)
+{
+    if (pet.energy == ENERGY.second)
+        std::cout << pet.name << " is not tired at all!\n";
+    else
+    {
+        change_energy(pet, 25);
+        std::cout << pet.name << " sleeps like a baby.\nIt's energy is now: "
+        << pet.energy << '\n';
+    }
 }
 
 void play_with_pet(Pet& pet)

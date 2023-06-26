@@ -6,7 +6,7 @@
 
 constexpr std::pair<int,int> FULLNESS {0, 100};
 constexpr std::pair<int,int> HAPPINESS {0, 1000};
-constexpr std::pair<int,int> ENERGY {0, 100};;
+constexpr std::pair<int,int> ENERGY {0, 100};
 
 struct Pet
 {
@@ -20,5 +20,6 @@ struct Pet
 Pet create_new_pet(std::string name, std::string type);
 void feed_pet(Pet& pet);
 void play_with_pet(Pet& pet);
+void put_to_sleep(Pet& pet);
 
 #endif
