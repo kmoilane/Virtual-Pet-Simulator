@@ -1,12 +1,15 @@
 #ifndef PET_H
 #define PET_H
 
+#define SAVE_PATH "saves/"
 #include <string>
 #include <iostream>
 
-constexpr std::pair<int,int> FULLNESS {0, 100};
-constexpr std::pair<int,int> HAPPINESS {0, 1000};
-constexpr std::pair<int,int> ENERGY {0, 100};
+
+inline constexpr std::pair<int,int>    FULLNESS {0, 100};
+inline constexpr std::pair<int,int>    HAPPINESS {0, 1000};
+inline constexpr std::pair<int,int>    ENERGY {0, 100};
+
 
 struct Pet
 {
