@@ -22,8 +22,18 @@ std::string get_input(std::string msg)
     if (msg != "")
         std::cout << msg;
     std::string input {};
-    std::getline(std::cin >> std::ws, input);
-    return input;
+    while (true)
+    {
+        getline(std::cin, input);
+        if (std::cin.eof() == 1)
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), EOF);
+            continue;
+        }
+        else
+            return input;
+    }
 }
 
 /*

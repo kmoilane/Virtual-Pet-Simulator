@@ -90,7 +90,7 @@ TEST_CASE("TEST PET FUNCTIONS")
 **  from "saves/" to "../saves/"
 */
 
-/*
+
 TEST_CASE("TESTING FILE EXISTS")
 {
     std::string str = "testifilu";
@@ -108,4 +108,4 @@ TEST_CASE("TESTING FILE EXISTS")
         CHECK(file_exists(str2) == 1);
     }
 }
-*/
+

@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#define SAVE_PATH "saves/"
+#define SAVE_PATH "../saves/"
 #include "pet.h"
 #include <string>
 

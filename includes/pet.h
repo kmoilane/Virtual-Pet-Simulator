@@ -5,18 +5,21 @@
 #include <iostream>
 
 
-inline constexpr std::pair<int,int>    FULLNESS {0, 100};
-inline constexpr std::pair<int,int>    HAPPINESS {0, 1000};
-inline constexpr std::pair<int,int>    ENERGY {0, 100};
+inline constexpr static std::pair<int,int>    FULLNESS {0, 100};
+inline constexpr static std::pair<int,int>    HAPPINESS {0, 1000};
+inline constexpr static std::pair<int,int>    ENERGY {0, 100};
 
 
 struct Pet
 {
+    constexpr static int init_energy = 50;
+    constexpr static int init_happiness = 0;
+    constexpr static int init_fullness = 50;
     std::string name {""};
     std::string type {""};
-    int         happiness {0};  //Every pet starts with happiness of 0
-    int         fullness {30};  //Every pet starts with fullness of 30
-    int         energy {50};    //Every pet starts with energy of 50
+    int         happiness {init_happiness};  //Every pet starts with happiness of 0
+    int         fullness {init_fullness};  //Every pet starts with fullness of 30
+    int         energy {init_energy};    //Every pet starts with energy of 50
 };
 
 Pet create_new_pet(std::string name, std::string type);
